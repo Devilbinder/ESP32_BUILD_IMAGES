@@ -1,0 +1,31 @@
+name: Build
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+env:
+  IDF_VERSION: release/v4.2
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+
+      - uses: actions/checkout@v3
+
+      - name: Build
+        run: bash build.sh
+
+      - name: Test Builds
+        run: | 
+          cd TESTS
+          bash tests.sh
+          
+      - name: Artifact
+        run: mkdir build && cp ./wifi_station.bin build/wifi_station.bin
+        

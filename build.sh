@@ -8,5 +8,5 @@ VERSION=4.3
 docker build -t idf${VERSION} . --build-arg IDF_VERSION=${VERSION}
 VERSION=4.4
 docker build -t idf${VERSION} . --build-arg IDF_VERSION=${VERSION}
-VERSION=4.5
+VERSION=5.0
 docker build -t idf${VERSION} . --build-arg IDF_VERSION=${VERSION}
