@@ -3,8 +3,6 @@ name: Build
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
   workflow_dispatch:
 
 env:
@@ -25,7 +23,14 @@ jobs:
         run: | 
           cd TESTS
           bash tests.sh
+
+      - name: Test Builds
+        run: | 
+          cd TESTS
+          bash tests.sh
+
+      - name: Push
+        run: echo {{secrets.DOCKER_TOKEN}} | docker login -u {{secrets.DOCKER_USER}} --password-stdin && bash push.sh 
+
           
-      - name: Artifact
-        run: mkdir build && cp ./wifi_station.bin build/wifi_station.bin
         
