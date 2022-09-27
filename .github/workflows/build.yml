@@ -24,11 +24,6 @@ jobs:
           cd TESTS
           bash tests.sh
 
-      - name: Test Builds
-        run: | 
-          cd TESTS
-          bash tests.sh
-
       - name: Push
         run: echo {{secrets.DOCKER_TOKEN}} | docker login -u {{secrets.DOCKER_USER}} --password-stdin && bash push.sh 
 
